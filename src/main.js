@@ -1,12 +1,9 @@
-// let msg = 'Hello';
+import Vue from 'vue';
+import './style.scss'
 
-// let obj = {
-//     msg
-// }
-// console.log(obj)
-
-
-// console.log('Hello')
-
-import './style.scss';
-console.log('Hello world')
+new Vue({
+    el:'#app',
+    data:{
+        msg:'Hello World'
+    }
+})

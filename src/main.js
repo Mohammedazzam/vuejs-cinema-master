@@ -1,43 +1,47 @@
 import Vue from "vue";
 import "./style.scss";
 
-import genres from './util/genres';
+import genres from "./util/genres";
 
 new Vue({
-  el: "#app",
-  components: {
-    "movie-list": {
-      template: `<div id="movie-list">
+    el: "#app",
+    components: {
+        "movie-list": {
+            template: `<div id="movie-list">
                     <div v-for="movie in movies" class="movie">{{ movie.title }}</div>
                 </div>`,
-      data() {
-        return {
-          movies: [
-            { title: "Pulp Fiction" },
-            { title: "Home Alone" },
-            { title: "Austin Powers" }
-          ]
-        };
-      }
-    },
-    "movie-filter": {
-        data(){
-            return {
-                genres
+            data() {
+                return {
+                    movies: [
+                        { title: "Pulp Fiction" },
+                        { title: "Home Alone" },
+                        { title: "Austin Powers" }
+                    ]
+                };
             }
         },
-      template: `<div id="movie-filter">
+        "movie-filter": {
+            data() {
+                return {
+                    genres
+                };
+            },
+            template: `<div id="movie-filter">
                     <h2>Filter results</h2>
                     <div class="filter-group">
-                        <check-filters v-for="genre in genres"></check-filters>
+                        <check-filters v-for="genre in genres" v-bind:title="genre"></check-filters>
                     </div>
                 </div>`,
 
-      components: {
-        "check-filters": {
-          template:`<div>Filter</div>`
+            components: {
+                "check-filters": {
+                    props: ["title"],
+                    template: `<div class="check-filter">
+          <span class="checkbox"></span>
+          <span class="check-filter-title">{{title}}</span>
+          </div>`
+                }
+            }
         }
-      }
     }
-  }
 });
